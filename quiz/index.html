@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html><head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <title>Learn Prostate MRI - An Introduction to Prostate MRI Interpretation</title>
+  
+</head>
+
+<body>
+  <div class="container">
+    <div class="row margin-bottom"><div class="header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+      </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="../">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="../about">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Resources
+          </a>
+          <ul class="dropdown-menu custom-dropdown" style="font-size: 18px;">
+            <li><a class="dropdown-item custom-drop-item" href="../articles">Review articles and commentaries </a></li>
+            <li><a class="dropdown-item custom-drop-item" href="../investigations">Original investigations </a></li>
+            <li><a class="dropdown-item custom-drop-item" href="../pitfalls">Pitfalls in MRI interpretation</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="../quiz">The Quiz</a>
+        </li>
+        <form>
+          <a class="btn btn-sm btn-primary me-2" role="button" href="../cases/" style="padding-bottom: 5px; padding-top: 5px; padding-left: 12px; padding-right: 12px;">Interactive Cases</a>
+        </form>
+      </ul>
+      
+    </div>
+  </nav>
+  <h1 class="sitetitle" style="margin-top: 30px; margin-bottom: 10px;">Learn Prostate MRI</h1>
+</div></div>
+<div class="row" style="text-align: justify;">
+  <form id="myForm" class="needs-validation" novalidate>
+
+    <div class="form-group group1">
+        <label for="question1" id="quizLabel"> 1)&nbsp;&nbsp;According to PI-RADS version 2, which of
+            the following is the dominant
+            sequence for determining the overall assessment category for a peripheral zone lesion?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group1" id="validationFormCheck1" name="radio-stacked"
+                value="T2-weighted imaging" required>
+            <label class="form-check-label group1" for="validationFormCheck1">T2-weighted imaging </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group1" id="validationFormCheck2" name="radio-stacked"
+                value="Diffusion-weighted imaging" required>
+            <label class="form-check-label group1" for="validationFormCheck2">Diffusion-weighted imaging </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group1" id="validationFormCheck3" name="radio-stacked"
+                value="Dynamic contrast-enhanced imaging" required>
+            <label class="form-check-label group1" for="validationFormCheck3">Dynamic contrast-enhanced imaging </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group1" id="validationFormCheck4" name="radio-stacked"
+                value="MR spectroscopy" required>
+            <label class="form-check-label group1" for="validationFormCheck4">MR spectroscopy </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group2">
+        <label for="question2" id="quizLabel"> 2)&nbsp;&nbsp;According the PI-RADS version 2, which of
+            the following is the dominant sequence for determining the overall assessment category for a transition zone
+            lesion?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group2" id="validationFormCheck5" name="radio-stacked2"
+                value="T2-weighted imaging" required> 
+            <label class="form-check-label group2" for="validationFormCheck5">T2-weighted imaging </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group2" id="validationFormCheck6" name="radio-stacked2"
+                value="Diffusion-weighted imaging" required>
+            <label class="form-check-label group2" for="validationFormCheck6">Diffusion-weighted imaging </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group2" id="validationFormCheck7" name="radio-stacked2"
+                value="Dynamic contrast-enhanced imaging" required>
+            <label class="form-check-label group2" for="validationFormCheck7">Dynamic contrast-enhanced imaging </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group2" id="validationFormCheck8" name="radio-stacked2"
+                value="MR spectroscopy" required>
+            <label class="form-check-label group2" for="validationFormCheck8">MR spectroscopy </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group3">
+        <label for="question3" id="quizLabel"> 3)&nbsp;&nbsp;According the PI-RADS version 2, what size threshold
+            differentiates between sequence scores of 4 and 5 for both T2WI and DWI??</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group3" id="validationFormCheck9" name="radio-stacked3" value="10 mm"
+                required>
+            <label class="form-check-label group3" for="validationFormCheck9">10 mm</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group3" id="validationFormCheck10" name="radio-stacked3" value="15 mm"
+                required>
+            <label class="form-check-label group3" for="validationFormCheck10">15 mm</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group3" id="validationFormCheck11" name="radio-stacked3" value="20 mm"
+                required>
+            <label class="form-check-label group3" for="validationFormCheck11">20 mm</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group3" id="validationFormCheck12" name="radio-stacked3" value="25 mm"
+                required>
+            <label class="form-check-label group3" for="validationFormCheck12">25 mm</label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group4">
+        <label for="question4" id="quizLabel"> 4)&nbsp;&nbsp;According the PI-RADS version 2, positive DCE for a
+            peripheral
+            zone lesion is associated with which of the following changes in assessment category?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group4" id="validationFormCheck13" name="radio-stacked4"
+                value="From 1 to 2" required>
+            <label class="form-check-label group4" for="validationFormCheck13">From 1 to 2</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group4" id="validationFormCheck14" name="radio-stacked4"
+                value="From 2 to 3" required>
+            <label class="form-check-label group4" for="validationFormCheck14">From 2 to 3</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group4" id="validationFormCheck15" name="radio-stacked4"
+                value="From 3 to 4" required>
+            <label class="form-check-label group4" for="validationFormCheck15">From 3 to 4</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group4" id="validationFormCheck16" name="radio-stacked4"
+                value="From 4 to 5" required>
+            <label class="form-check-label group4" for="validationFormCheck16">From 4 to 5</label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group5">
+        <label for="question5" id="quizLabel"> 5)&nbsp;&nbsp;Which of the following techniques is not incorporated in
+            the
+            PI-RADS version 2 system for deriving a lesion’s overall assessment category on MRI?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group5" id="validationFormCheck17" name="radio-stacked5"
+                value="T2-weighted imaging" required>
+            <label class="form-check-label group5" for="validationFormCheck17">T2-weighted imaging </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group5" id="validationFormCheck18" name="radio-stacked5"
+                value="Diffusion-weighted imaging" required>
+            <label class="form-check-label group5" for="validationFormCheck18">Diffusion-weighted imaging</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group5" id="validationFormCheck19" name="radio-stacked5"
+                value="Dynamic contrast-enhanced imaging" required>
+            <label class="form-check-label group5" for="validationFormCheck19">Dynamic contrast-enhanced imaging</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group5" id="validationFormCheck20" name="radio-stacked5"
+                value="MR spectroscopy" required>
+            <label class="form-check-label group5" for="validationFormCheck20">MR spectroscopy</label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group6">
+        <label for="question6" id="quizLabel"> 6)&nbsp;&nbsp;According to the lecture, which of the following may be an
+            appropriate maximal b-value for prostate DWI?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group6" id="validationFormCheck21" name="radio-stacked6" value="100"
+                required>
+            <label class="form-check-label group6" for="validationFormCheck21">100 </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group6" id="validationFormCheck22" name="radio-stacked6" value="500"
+                required>
+            <label class="form-check-label group6" for="validationFormCheck22">500</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group6" id="validationFormCheck23" name="radio-stacked6" value="1500"
+                required>
+            <label class="form-check-label group6" for="validationFormCheck23">1500</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group6" id="validationFormCheck24" name="radio-stacked6" value="5000"
+                required>
+            <label class="form-check-label group6" for="validationFormCheck24">5000</label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group7">
+        <label for="question7" id="quizLabel"> 7)&nbsp;&nbsp;According to PI-RADS version 2, a peripheral zone lesion
+            exhibiting focal marked hypointensity on the ADC map and marked hyperintensity on high b-value images,
+            though measuring under 1.5 cm and not exhibiting definite extra-prostatic extension or invasive behavior,
+            would receive what score on DWI?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group7" id="validationFormCheck25" name="radio-stacked7" value="1"
+                required>
+            <label class="form-check-label group7" for="validationFormCheck25">1 </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group7" id="validationFormCheck26" name="radio-stacked7" value="2"
+                required>
+            <label class="form-check-label group7" for="validationFormCheck26">2</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group7" id="validationFormCheck27" name="radio-stacked7" value="3"
+                required>
+            <label class="form-check-label group7" for="validationFormCheck27">3</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group7" id="validationFormCheck28" name="radio-stacked7" value="4"
+                required>
+            <label class="form-check-label group7" for="validationFormCheck28">4</label>
+        </div>
+
+        <div class="form-check">
+            <input type="radio" class="form-check-input group7" id="validationFormCheck29" name="radio-stacked7" value="5"
+                required>
+            <label class="form-check-label group7" for="validationFormCheck29">5</label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group8">
+        <label for="question8" id="quizLabel"> 8)&nbsp;&nbsp;Achieving an empty rectum is of particular importance for
+            minimizing artifacts on which of the following sequences?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group8" id="validationFormCheck30" name="radio-stacked8"
+                value="T2-weighted imaging" required>
+            <label class="form-check-label group8" for="validationFormCheck30">T2-weighted imaging</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group8" id="validationFormCheck31" name="radio-stacked8"
+                value="Diffusion-weighted imaging" required>
+            <label class="form-check-label group8" for="validationFormCheck31">Diffusion-weighted imaging</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group8" id="validationFormCheck32" name="radio-stacked8"
+                value="Dynamic contrast-enhanced imaging" required>
+            <label class="form-check-label group8" for="validationFormCheck32">Dynamic contrast-enhanced imaging</label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group9">
+        <label for="question9" id="quizLabel"> 9)&nbsp;&nbsp;As the Gleason score of prostate tumors increase, the ADC
+            value tends to:
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group9" id="validationFormCheck33" name="radio-stacked9"
+                value="Decrease" required>
+            <label class="form-check-label group9" for="validationFormCheck33">Decrease</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group9" id="validationFormCheck34" name="radio-stacked9"
+                value="Increase" required>
+            <label class="form-check-label group9" for="validationFormCheck34">Increase</label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group10">
+        <label for="question10" id="quizLabel"> 10)&nbsp;&nbsp;
+            PI-RADS version 2 suggests what threshold in terms of ADC value measurement for detecting clinically
+            significant tumors? (units of µm2/sec)
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group10" id="validationFormCheck35" name="radio-stacked10"
+                value="500-650" required>
+            <label class="form-check-label group10" for="validationFormCheck35"> 500-650 </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group10" id="validationFormCheck36" name="radio-stacked10"
+                value="750-900" required>
+            <label class="form-check-label group10" for="validationFormCheck36"> 750-900 </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group10" id="validationFormCheck37" name="radio-stacked10"
+                value="1000-1200" required>
+            <label class="form-check-label group10" for="validationFormCheck37"> 1000-1200 </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group10" id="validationFormCheck38" name="radio-stacked10"
+                value="1500-1800" required>
+            <label class="form-check-label group10" for="validationFormCheck38"> 1500-1800 </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group11">
+        <label for="question11" id="quizLabel"> 11)&nbsp;&nbsp;
+            PI-RADS version 2 advises a temporal resolution for dynamic contrast-enhanced imaging of at least which of
+            the following?
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group11" id="validationFormCheck39" name="radio-stacked11"
+                value="5 seconds" required>
+            <label class="form-check-label group11" for="validationFormCheck39"> 5 seconds </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group11" id="validationFormCheck40" name="radio-stacked11"
+                value="10 seconds" required>
+            <label class="form-check-label group11" for="validationFormCheck40"> 10 seconds </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group11" id="validationFormCheck41" name="radio-stacked11"
+                value="20 seconds" required>
+            <label class="form-check-label group11" for="validationFormCheck41"> 20 seconds </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group11" id="validationFormCheck42" name="radio-stacked11"
+                value="30 seconds" required>
+            <label class="form-check-label group11" for="validationFormCheck42"> 30 seconds </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group12">
+        <label for="question12" id="quizLabel"> 12)&nbsp;&nbsp;
+            According to PI-RADS version 2, which of the following scales is used for assessing DCE for a peripheral
+            zone lesion?
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group12" id="validationFormCheck43" name="radio-stacked12"
+                value="Positive/Negative" required>
+            <label class="form-check-label group12" for="validationFormCheck43"> Positive/Negative </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group12" id="validationFormCheck44" name="radio-stacked12"
+                value="Low/intermediate/high" required>
+            <label class="form-check-label group12" for="validationFormCheck44"> Low/intermediate/high </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group12" id="validationFormCheck45" name="radio-stacked12"
+                value="1 through 5" required>
+            <label class="form-check-label group12" for="validationFormCheck45"> 1 through 5 </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group12" id="validationFormCheck46" name="radio-stacked12"
+                value="1 through 10" required>
+            <label class="form-check-label group12" for="validationFormCheck46"> 1 through 10 </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group13">
+        <label for="question13" id="quizLabel"> 13)&nbsp;&nbsp;
+            According to PI-RADS version 2, for a transition zone lesion, which of the following properties may raise
+            the overall assessment category to a 4 for a lesion with a T2WI score of 3?
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group13" id="validationFormCheck47" name="radio-stacked13"
+                value="DWI score of 4" required>
+            <label class="form-check-label group13" for="validationFormCheck47"> DWI score of 4 </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group13" id="validationFormCheck48" name="radio-stacked13"
+                value="DWI score of 5" required>
+            <label class="form-check-label group13" for="validationFormCheck48"> DWI score of 5 </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group13" id="validationFormCheck49" name="radio-stacked13"
+                value="Positive DCE" required>
+            <label class="form-check-label group13" for="validationFormCheck49"> Positive DCE </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group13" id="validationFormCheck50" name="radio-stacked13"
+                value="Size of 15 mm" required>
+            <label class="form-check-label group13" for="validationFormCheck50"> Size of 15 mm </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group14">
+        <label for="question14" id="quizLabel"> 14)&nbsp;&nbsp;
+            According to PI-RADS version 2, which of the following morphologic features must a peripheral zone lesion
+            exhibit to receive a score of at least 3 on DWI?
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group14" id="validationFormCheck51" name="radio-stacked14"
+                value="Indistinct" required>
+            <label class="form-check-label group14" for="validationFormCheck51"> Indistinct </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group14" id="validationFormCheck52" name="radio-stacked14" value="Focal"
+                required>
+            <label class="form-check-label group14" for="validationFormCheck52"> Focal </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group14" id="validationFormCheck53" name="radio-stacked14"
+                value="Linear" required>
+            <label class="form-check-label group14" for="validationFormCheck53"> Linear </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group14" id="validationFormCheck54" name="radio-stacked14"
+                value="Wedge-shaped" required>
+            <label class="form-check-label group14" for="validationFormCheck54"> Wedge-shaped </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div> 
+
+    <div class="form-group group15">
+        <label for="question15" id="quizLabel"> 15)&nbsp;&nbsp;
+            The prostatic pseudocapsule, or “surgical capsule,” separates which two zones?
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group15" id="validationFormCheck55" name="radio-stacked15"
+                value="Peripheral and transition zones" required>
+            <label class="form-check-label group15" for="validationFormCheck55"> Peripheral and transition zones </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group15" id="validationFormCheck56" name="radio-stacked15"
+                value="Peripheral and central zones" required>
+            <label class="form-check-label group15" for="validationFormCheck56"> Peripheral and central zones </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group15" id="validationFormCheck57" name="radio-stacked15"
+                value="Transition and central zones" required>
+            <label class="form-check-label group15" for="validationFormCheck57"> Transition and central zones </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group16">
+        <label for="question16" id="quizLabel"> 16)&nbsp;&nbsp;
+            When performing MRI/ultrasound fusion biopsy, the MRI-defined targets are marked during a planning session
+            in advance of the biopsy.
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group16" id="validationFormCheck58" name="radio-stacked16" value="True"
+                required>
+            <label class="form-check-label group16" for="validationFormCheck58"> True </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group16" id="validationFormCheck59" name="radio-stacked16" value="False"
+                required>
+            <label class="form-check-label group16" for="validationFormCheck59"> False </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group17">
+        <label for="question17" id="quizLabel"> 17)&nbsp;&nbsp;
+            A potential benefit of MRI-targeted biopsy is reduced detection of clinically insignificant prostate cancer.
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group17" id="validationFormCheck60" name="radio-stacked17" value="True"
+                required>
+            <label class="form-check-label group17" for="validationFormCheck60"> True </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group17" id="validationFormCheck61" name="radio-stacked17" value="False"
+                required>
+            <label class="form-check-label group17" for="validationFormCheck61"> False </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group18">
+        <label for="question18" id="quizLabel"> 18)&nbsp;&nbsp;
+            According to PI-RADS v2, what length of abutment between a visualized tumor and the capsule raises
+            suspicious for extra-prostatic extension?
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group18" id="validationFormCheck62" name="radio-stacked18" value="5 mm"
+                required>
+            <label class="form-check-label group18" for="validationFormCheck62"> 5 mm </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group18" id="validationFormCheck63" name="radio-stacked18" value="10 mm"
+                required>
+            <label class="form-check-label group18" for="validationFormCheck63"> 10 mm </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group18" id="validationFormCheck64" name="radio-stacked18" value="15 mm"
+                required>
+            <label class="form-check-label group18" for="validationFormCheck64"> 15 mm </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group18" id="validationFormCheck65" name="radio-stacked18" value="20 mm"
+                required>
+            <label class="form-check-label group18" for="validationFormCheck65"> 20 mm </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group19">
+        <label for="question19" id="quizLabel"> 19)&nbsp;&nbsp;
+            Obtaining subtraction images for DCE may help address which of the following interpretive pitfalls?
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group19" id="validationFormCheck66" name="radio-stacked19"
+                value="Prostatitis" required>
+            <label class="form-check-label group19" for="validationFormCheck66"> Prostatitis </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group19" id="validationFormCheck67" name="radio-stacked19"
+                value="Benign prostate hyperplasia" required>
+            <label class="form-check-label group19" for="validationFormCheck67"> Benign prostate hyperplasia </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group19" id="validationFormCheck68" name="radio-stacked19"
+                value="Post-biopsy hemorrhage" required>
+            <label class="form-check-label group19" for="validationFormCheck68"> Post-biopsy hemorrhage </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group19" id="validationFormCheck69" name="radio-stacked19"
+                value="Prostatic atrophy" required>
+            <label class="form-check-label group19" for="validationFormCheck69"> Prostatic atrophy </label>
+            <div class="invalid-feedback">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <div class="form-group group20">
+        <label for="question20" id="quizLabel"> 20)&nbsp;&nbsp;
+            Which of the following processes may cause decreased T2 signal in the peripheral zone?
+        </label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group20" id="validationFormCheck70" name="radio-stacked20" value="Tumor"
+                required>
+            <label class="form-check-label group20" for="validationFormCheck70"> Tumor </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group20" id="validationFormCheck71" name="radio-stacked20"
+                value="Hemorrhage" required>
+            <label class="form-check-label group20" for="validationFormCheck71"> Hemorrhage </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group20" id="validationFormCheck72" name="radio-stacked20"
+                value="Inflammation" required>
+            <label class="form-check-label group20" for="validationFormCheck72"> Inflammation </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group20" id="validationFormCheck73" name="radio-stacked20"
+                value="Post-inflammatory atrophy" required>
+            <label class="form-check-label group20" for="validationFormCheck73"> Post-inflammatory atrophy </label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input group20" id="validationFormCheck74" name="radio-stacked20"
+                value="All of the above" required>
+            <label class="form-check-label group20" for="validationFormCheck74"> All of the above </label>
+            <div class="invalid-feedback group20">Please provide an answer.</div>
+        </div>
+    </div>
+
+    <button id="#submitBtn" type="submit" class="btn btn-outline-dark">Submit quiz</button>
+</form>
+
+<script>
+    // Add event listener to the form's submit event
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+
+        event.preventDefault(); // Prevent form submission if validation fails
+        if (this.checkValidity() === false) {
+            event.stopPropagation(); // Stop the event from propagating further
+        } else {
+            let score = calculateScore();
+
+            if (score === 20) {
+                swal({
+                    title: "Excellent!",
+                    text: "You answered all 20 questions correctly.",
+                    icon: "success",
+                });
+            }
+            if (score >= 15 && score <= 19) {
+                swal({
+                    title: "Not bad!",
+                    text: "You answered " + score + " out of 20 questions correctly.",
+                    icon: "warning",
+                });
+            }
+            if (score < 15) {
+                let wrongAns = 20 - score;
+                swal({
+                    title: "Try again!",
+                    text: wrongAns + " out of your 20 answers were, unfortunately, incorrect.",
+                    icon: "error",
+                });
+            }
+
+        }
+        this.classList.add("was-validated");
+    }, false);
+
+
+    function calculateScore() {
+        let score = 0;
+            var radioValue1 = $("input[name='radio-stacked']:checked").val();
+            var radioValue2 = $("input[name='radio-stacked2']:checked").val();
+            var radioValue3 = $("input[name='radio-stacked3']:checked").val();
+            var radioValue4 = $("input[name='radio-stacked4']:checked").val();
+            var radioValue5 = $("input[name='radio-stacked5']:checked").val();
+            var radioValue6 = $("input[name='radio-stacked6']:checked").val();
+            var radioValue7 = $("input[name='radio-stacked7']:checked").val();
+            var radioValue8 = $("input[name='radio-stacked8']:checked").val();
+            var radioValue9 = $("input[name='radio-stacked9']:checked").val();
+            var radioValue10 = $("input[name='radio-stacked10']:checked").val();
+            var radioValue11 = $("input[name='radio-stacked11']:checked").val();
+            var radioValue12 = $("input[name='radio-stacked12']:checked").val();
+            var radioValue13 = $("input[name='radio-stacked13']:checked").val();
+            var radioValue14 = $("input[name='radio-stacked14']:checked").val();
+            var radioValue15 = $("input[name='radio-stacked15']:checked").val();
+            var radioValue16 = $("input[name='radio-stacked16']:checked").val();
+            var radioValue17 = $("input[name='radio-stacked17']:checked").val();
+            var radioValue18 = $("input[name='radio-stacked18']:checked").val();
+            var radioValue19 = $("input[name='radio-stacked19']:checked").val();
+            var radioValue20 = $("input[name='radio-stacked20']:checked").val();
+
+            if (radioValue1 === "Diffusion-weighted imaging") {
+                score++;
+                $(".group1").css("color", "#1a1a1a");
+            } else {
+                $(".group1").css("color", "#dc3545");
+            }
+
+            if (radioValue2 === "T2-weighted imaging") {
+                score++;
+                $(".group2").css("color", "#1a1a1a");
+            } else {
+                $(".group2").css("color", "#dc3545");
+            }
+
+            if (radioValue3 === "15 mm") {
+                score++;
+                $(".group3").css("color", "#1a1a1a");
+            } else {
+                $(".group3").css("color", "#dc3545");
+            }
+
+            if (radioValue4 === "From 3 to 4") {
+               score++;
+               $(".group4").css("color", "#1a1a1a");
+            } else {
+               $(".group4").css("color", "#dc3545");
+            }
+
+            if (radioValue5 === "MR spectroscopy") {
+                score++;
+                $(".group5").css("color", "#1a1a1a");
+            } else {
+                $(".group5").css("color", "#dc3545");
+            }
+            
+            if (radioValue6 === "1500") {
+                score++;
+                $(".group6").css("color", "#1a1a1a");
+            } else {
+                $(".group6").css("color", "#dc3545");
+            }
+
+            if (radioValue7 === "4") {
+                score++;
+                $(".group7").css("color", "#1a1a1a");
+            } else {
+                $(".group7").css("color", "#dc3545");
+            }
+            
+            if (radioValue8 === "Diffusion-weighted imaging") {
+                score++;
+                $(".group8").css("color", "#1a1a1a");
+            } else {
+                $(".group8").css("color", "#dc3545");
+            }
+
+            if (radioValue9 === "Decrease") {
+                score++;
+                $(".group9").css("color", "#1a1a1a");
+            } else {
+                $(".group9").css("color", "#dc3545");
+            }
+
+            if (radioValue10 === "750-900") {
+                score++;
+                $(".group10").css("color", "#1a1a1a");
+            } else {
+                $(".group10").css("color", "#dc3545");
+            }
+
+            if (radioValue11 === "10 seconds") {
+                score++;
+                $(".group11").css("color", "#1a1a1a");
+            } else {
+                $(".group11").css("color", "#dc3545");
+            }
+            
+            if (radioValue12 === "Positive/Negative") {
+                score++;
+                $(".group12").css("color", "#1a1a1a");
+            } else {
+                $(".group12").css("color", "#dc3545");
+            }
+
+            if (radioValue13 === "DWI score of 5") {
+                score++;
+                $(".group13").css("color", "#1a1a1a");
+            } else {
+                $(".group13").css("color", "#dc3545");
+            }
+
+            if (radioValue14 === "Focal") {
+                score++;
+                $(".group14").css("color", "#1a1a1a");
+            } else {
+                $(".group14").css("color", "#dc3545");
+            }
+
+            if (radioValue15 === "Peripheral and transition zones") {
+                score++;
+                $(".group15").css("color", "#1a1a1a");
+            } else {
+                $(".group15").css("color", "#dc3545");
+            }
+
+            if (radioValue16 === "True") {
+                score++;
+                $(".group16").css("color", "#1a1a1a");
+            } else {
+                $(".group16").css("color", "#dc3545");
+            }
+
+            if (radioValue17 === "True") {
+                score++;
+                $(".group17").css("color", "#1a1a1a");
+            } else {
+                $(".group17").css("color", "#dc3545");
+            }
+
+            if (radioValue18 === "10 mm") {
+                score++;
+                $(".group18").css("color", "#1a1a1a");
+            } else {
+                $(".group18").css("color", "#dc3545");
+            }
+
+            if (radioValue19 === "Post-biopsy hemorrhage") {
+                score++;
+                $(".group19").css("color", "#1a1a1a");
+            } else {
+                $(".group19").css("color", "#dc3545");
+            }
+
+            if (radioValue20 === "All of the above") {
+                score++;
+                $(".group20").css("color", "#1a1a1a");
+            } else {
+                $(".group20").css("color", "#dc3545");
+            }
+            return score;
+    }
+</script>
+</div>
+<footer id="footer" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-4 mb-3">
+                <small>
+                    Disclaimer: Except for where otherwise indicated, the content of this website is the sole property
+                    of Dr. Andrew Rosenkrantz.Permission from the site's author is required prior to any use or reproduction of
+                    any of the content.
+                </small>
+                <small style="margin-top: 8px;">© 2017-2024 Dr. Andrew Rosenkrantz</small>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-4 mb-3" style="text-align: center;">
+                <a href="https://www.rsna.org/" target="_blank"><img src="../logo.png" style="height: 43px;" align="center"></a>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-4 mb-3" style="text-align: center;">
+                <a href="https://med.nyu.edu/departments-institutes/radiology/research" target="_blank"><img src="../CBI_Logo_Final.png" style="height: 43px;"></a>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <a style="color: #ddd; font-size: 9px; text-align: right; display: block; text-decoration: none;"
+                    href="http://jamiekleiman.com/" target="_blank">Web
+                    design by
+                    Jamie Kleiman</a>
+            </div>
+        </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</div>
+</body>
+
+</html>

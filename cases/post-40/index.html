@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html><head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+
+  <title>Learn Prostate MRI - An Introduction to Prostate MRI Interpretation</title>
+  
+</head>
+
+<body>
+  <div class="container">
+    <div class="row margin-bottom"><div class="header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+      </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="../../">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="../../about">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Resources
+          </a>
+          <ul class="dropdown-menu custom-dropdown" style="font-size: 18px;">
+            <li><a class="dropdown-item custom-drop-item" href="../../articles">Review articles and commentaries </a></li>
+            <li><a class="dropdown-item custom-drop-item" href="../../investigations">Original investigations </a></li>
+            <li><a class="dropdown-item custom-drop-item" href="../../pitfalls">Pitfalls in MRI interpretation</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="../../quiz">The Quiz</a>
+        </li>
+        <form>
+          <a class="btn btn-sm btn-primary me-2" role="button" href="../../cases/" style="padding-bottom: 5px; padding-top: 5px; padding-left: 12px; padding-right: 12px;">Interactive Cases</a>
+        </form>
+      </ul>
+      
+    </div>
+  </nav>
+  <h1 class="sitetitle" style="margin-top: 30px; margin-bottom: 10px;">Learn Prostate MRI</h1>
+</div></div>
+<div class="row">
+  <div id="mydivon" style="display:block">
+    <h3 style="margin-bottom: 0;">40 </h3>
+</div>
+<div id="mydivoff" style="display:none">
+    <h3 style="margin-bottom: 0;">40: TZ PI-RADS 5 tumor</h3>
+</div>
+
+<a id="showTitle" class="btn btn-link d-flex justify-content-start" role="button"
+    style="padding-left: 12px; padding-top: 0; font-size: 12.6px;" href="javascript:;"
+    onmousedown="toggleDiv('mydiv');">Show Title</a>
+
+<div style="margin-bottom: 10px;"></div>
+
+<script>
+    function toggleDiv(divid) {
+
+        varon = divid + 'on';
+        varoff = divid + 'off';
+
+        if (document.getElementById(varon).style.display == 'block') {
+            document.getElementById(varon).style.display = 'none';
+            document.getElementById(varoff).style.display = 'block';
+        }
+
+        else {
+            document.getElementById(varoff).style.display = 'none';
+            document.getElementById(varon).style.display = 'block'
+        }
+    } 
+</script>
+<script type="text/javascript"
+    src="https://github.com/ivmartel/dwv/releases/download/v0.17.0/dwv-0.17.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var resetBtns = document.querySelectorAll('.reset-btn');
+        var scrollBtns = document.querySelectorAll('.scroll-btn');
+        var levelBtns = document.querySelectorAll('.level-btn');        
+        var zoomBtns = document.querySelectorAll('.zoom-btn');
+
+        
+        resetBtns.forEach(function (resetBtn, index) {
+            resetBtn.addEventListener('click', function () {
+
+                if (index == 0) {
+                    app.onDisplayReset();
+                    document.getElementById("view1Scroll").click()
+                } else if (index == 1) {
+                    app2.onDisplayReset();
+                    document.getElementById("view2Scroll").click()
+                } else if (index == 2) {
+                    app3.onDisplayReset();
+                    document.getElementById("view3Scroll").click()
+                } else if (index == 3) {
+                    app4.onDisplayReset();
+                    document.getElementById("view4Scroll").click()
+                }
+
+                
+                zoomBtns[index].classList.remove('chosen');
+                levelBtns[index].classList.remove('chosen');
+                scrollBtns[index].classList.add('chosen');
+            });
+        });
+
+        levelBtns.forEach(function (levelBtn, index) {
+            levelBtn.addEventListener('click', function () {
+                scrollBtns[index].classList.remove('chosen');
+                zoomBtns[index].classList.remove('chosen');
+                levelBtn.classList.add('chosen');
+            });
+        });
+
+        zoomBtns.forEach(function (zoomBtn, index) {
+            zoomBtn.addEventListener('click', function () {
+                scrollBtns[index].classList.remove('chosen');
+                levelBtns[index].classList.remove('chosen');
+                zoomBtn.classList.add('chosen');
+            });
+        });
+
+        scrollBtns.forEach(function (scrollBtn, index) {
+            scrollBtn.addEventListener('click', function () {
+                zoomBtns[index].classList.remove('chosen');
+                levelBtns[index].classList.remove('chosen');
+                scrollBtn.classList.add('chosen');
+            });
+        });
+    });
+</script>
+
+<div class="col-lg-8 col-md-8 col-sm-12 mb-2">
+    <div class="row mr-data">
+
+               
+        <div class="col-lg-6 col-md-6 col-sm-12 mr">
+            <div class="d-flex flex-row btn-group1" style="margin-bottom: 5px;">
+                <div class="btn-group" role="group">
+                    <button title="Scroll" type="button" class="btn scroll-btn chosen" value="Scroll" id="view1Scroll">
+                        <i class="fas fa-scroll"></i></button>
+                    <button title="Window" type="button" class="btn level-btn" value="WindowLevel" id="view1Window">
+                        <i class="fas fa-adjust"></i></button>
+                    <button title="Pan/Zoom" type="button" class="btn zoom-btn" value="ZoomAndPan" id="view1Zoom">
+                        <i class="fas fa-search-plus"></i></button>
+                </div>
+                <button title="Reset" type="button" style="margin-left: 3px;" class="btn reset-btn">
+                    <i class="fas fa-undo-alt"></i></button>
+            </div>
+
+            <div id="dwv">
+                <div class="layerContainer">
+                    <canvas class="imageLayer"></canvas>
+                </div>
+                <div class="imagelabel"><span>T2WI</span></div>
+            </div>
+
+            <script>
+                dwv.gui.getElement = dwv.gui.base.getElement;
+                dwv.gui.getWindowSize = dwv.gui.base.getWindowSize;
+                dwv.gui.displayProgress = function (percent) { };
+
+                var app = new dwv.App();
+                app.init({
+                    "containerDivId": "dwv",
+                    "fitToWindow": true,
+                    "tools": ["Scroll", "WindowLevel", "ZoomAndPan"]
+                });
+
+                var files = "/cases/case_40/view_1/00001_e793d6883414876f.dcm,/cases/case_40/view_1/00002_69363482ed0b792b.dcm,/cases/case_40/view_1/00003_e80cbfc802766480.dcm,/cases/case_40/view_1/00004_b38fcee9f8247ec3.dcm,/cases/case_40/view_1/00005_0aa7a02aca8e119d.dcm,/cases/case_40/view_1/00006_78ab35da282989c9.dcm,/cases/case_40/view_1/00008_3727f4ecd28e4e16.dcm,/cases/case_40/view_1/00009_aac858edf771cda4.dcm,/cases/case_40/view_1/00010_f475374b7a465820.dcm,/cases/case_40/view_1/00011_ca6cd844550e9689.dcm,/cases/case_40/view_1/00012_eab1ef70428cfb87.dcm,/cases/case_40/view_1/00013_bd262e3e44eed94b.dcm,/cases/case_40/view_1/00014_171f6e746075c29c.dcm,/cases/case_40/view_1/00015_9cdfdd9a588fd107.dcm,/cases/case_40/view_1/00016_2b3f2a7d3b085438.dcm,/cases/case_40/view_1/00017_b7d2a7f511547adb.dcm,/cases/case_40/view_1/00018_29be1d284d96960c.dcm,/cases/case_40/view_1/00019_af5b75331867543a.dcm,/cases/case_40/view_1/00020_b539d96fa69f23d6.dcm,/cases/case_40/view_1/00021_82c96ae14763e4c3.dcm,/cases/case_40/view_1/00022_1fa2c011a9ee42bb.dcm,/cases/case_40/view_1/00023_29b9a3fc6e24abdf.dcm,/cases/case_40/view_1/00024_c02e38a063693e33.dcm,/cases/case_40/view_1/00025_45acffdaff8b9c4f.dcm,/cases/case_40/view_1/00026_132f480dc8a35b01.dcm,/cases/case_40/view_1/00027_2616d222ef727600.dcm,/cases/case_40/view_1/00028_64f077fbca251bc6.dcm,/cases/case_40/view_1/00029_92307c39133b2c79.dcm,/cases/case_40/view_1/00001_e793d6883414876f.dcm,/cases/case_40/view_1/00007_1fa3fa5ac86d28da.dcm,/cases/case_40/view_1/00030_ac0e8459c164b266.dcm";
+                let filesArray = files.split(",");
+                app.loadURLs(filesArray)
+
+                document.getElementById("view1Scroll").onclick = app.onChangeTool;
+                document.getElementById("view1Window").onclick = app.onChangeTool;
+                document.getElementById("view1Zoom").onclick = app.onChangeTool;
+            </script>   
+
+        </div>
+
+        
+        <div class="col-lg-6 col-md-6 col-sm-12 mr">
+            <div class="d-flex flex-row" style="margin-bottom: 5px;">
+                <div class="btn-group" role="group">
+                    <button title="Scroll" type="button" class="btn scroll-btn chosen" value="Scroll" id="view2Scroll">
+                        <i class="fas fa-scroll"></i></button>
+                    <button title="Window" type="button" class="btn level-btn" value="WindowLevel" id="view2Window">
+                        <i class="fas fa-adjust"></i></button>
+                    <button title="Pan/Zoom" type="button" class="btn zoom-btn" value="ZoomAndPan" id="view2Zoom">
+                        <i class="fas fa-search-plus"></i></button>
+                </div>
+                <button title="Reset" type="button" style="margin-left: 3px;" class="btn reset-btn">
+                    <i class="fas fa-undo-alt"></i></button>
+            </div>
+
+            <div id="dwv2">
+                <div id="layerGroup1" class="layerContainer">
+                    <canvas class="imageLayer grid-canvas"></canvas>
+                </div>
+                <div class="imagelabel"><span>ADC</span></div>
+            </div>
+
+            <script>
+                var app2 = new dwv.App();
+                app2.init({
+                    "containerDivId": "dwv2",
+                    "fitToWindow": true,
+                    "tools": ["Scroll", "WindowLevel", "ZoomAndPan"]
+                });
+
+                var files2 = "/cases/case_40/view_2/00001_4c2cebac17bbe45b.dcm,/cases/case_40/view_2/00002_2fb14c34591293f2.dcm,/cases/case_40/view_2/00003_b9d13be27dd74f63.dcm,/cases/case_40/view_2/00004_8b5190252663fa02.dcm,/cases/case_40/view_2/00005_917ebb0f5e4f7b9c.dcm,/cases/case_40/view_2/00006_2058897cd5731cf7.dcm,/cases/case_40/view_2/00007_d7e5912b4c6224a5.dcm,/cases/case_40/view_2/00008_e6ff246d1e3cc2c8.dcm,/cases/case_40/view_2/00009_ae876639566dcdab.dcm,/cases/case_40/view_2/00010_536f3e24939ea148.dcm,/cases/case_40/view_2/00011_51b0ecb72fbc5643.dcm,/cases/case_40/view_2/00012_156f6f9a5743c084.dcm,/cases/case_40/view_2/00013_440a4ab2f395f098.dcm,/cases/case_40/view_2/00014_019fcb928bb51da1.dcm,/cases/case_40/view_2/00015_d06968ece0fe38a4.dcm,/cases/case_40/view_2/00016_0e401a4e3170e133.dcm,/cases/case_40/view_2/00017_880b1e2760a5df06.dcm,/cases/case_40/view_2/00018_7b1708c9d274e03d.dcm,/cases/case_40/view_2/00019_b5380e2543fda18f.dcm,/cases/case_40/view_2/00020_cbbdb991ec008e82.dcm,/cases/case_40/view_2/00021_aad7f56cef656963.dcm,/cases/case_40/view_2/00022_fe0af7174a91772c.dcm,/cases/case_40/view_2/00023_9776d94a6ab3f919.dcm,/cases/case_40/view_2/00024_290cc6eab756cdc7.dcm,/cases/case_40/view_2/00025_f275437dc62cfc41.dcm,/cases/case_40/view_2/00026_c5df5a3d53427132.dcm,/cases/case_40/view_2/00027_683aa34f8a663c41.dcm,/cases/case_40/view_2/00028_d5b5e5467a50ea1b.dcm,/cases/case_40/view_2/00029_453cac19f460083c.dcm,/cases/case_40/view_2/00030_d58dfad150da0a05.dcm";
+                let filesArray2 = files2.split(",");
+                app2.loadURLs(filesArray2)
+
+                document.getElementById("view2Scroll").onclick = app2.onChangeTool;
+                document.getElementById("view2Window").onclick = app2.onChangeTool;
+                document.getElementById("view2Zoom").onclick = app2.onChangeTool;                
+            </script>
+        </div>
+
+        
+        <div class="col-lg-6 col-md-6 col-sm-12 mr">
+            <div class="d-flex flex-row" style="margin-bottom: 5px;">
+                <div class="btn-group" role="group">
+                    <button title="Scroll" type="button" class="btn scroll-btn chosen" value="Scroll" id="view3Scroll">
+                        <i class="fas fa-scroll"></i></button>
+                    <button title="Window" type="button" class="btn level-btn" value="WindowLevel" id="view3Window">
+                        <i class="fas fa-adjust"></i></button>
+                    <button title="Pan/Zoom" type="button" class="btn zoom-btn" value="ZoomAndPan" id="view3Zoom">
+                        <i class="fas fa-search-plus"></i></button>
+                </div>
+                <button title="Reset" type="button" style="margin-left: 3px;" class="btn reset-btn">
+                    <i class="fas fa-undo-alt"></i></button>
+            </div>
+
+            <div id="dwv3">
+                <div id="layerGroup2" class="layerContainer">
+                    <canvas class="imageLayer"></canvas>
+                </div>
+                <div class="imagelabel"><span>DWI</span></div>
+            </div>
+            <script>
+                var app3 = new dwv.App();
+                app3.init({
+                    "containerDivId": "dwv3",
+                    "fitToWindow": true,
+                    "tools": ["Scroll", "ZoomAndPan", "WindowLevel"]
+                });
+
+                var files3 = "/cases/case_40/view_3/00001_1dbb975e8597b904.dcm,/cases/case_40/view_3/00002_a1ed60da0b826a51.dcm,/cases/case_40/view_3/00003_f71baa0db60ae5a5.dcm,/cases/case_40/view_3/00004_b0cd262edd8f0283.dcm,/cases/case_40/view_3/00005_33aeb9c554f1816c.dcm,/cases/case_40/view_3/00006_a87a54203d2821c5.dcm,/cases/case_40/view_3/00007_8a037dc1efc4db0e.dcm,/cases/case_40/view_3/00008_13847ccb434f1e6f.dcm,/cases/case_40/view_3/00009_d0a56f50c7df51e6.dcm,/cases/case_40/view_3/00010_c54761625477b9a5.dcm,/cases/case_40/view_3/00011_a9c15c99b993f250.dcm,/cases/case_40/view_3/00012_ec8240bf9e4a91c9.dcm,/cases/case_40/view_3/00013_d76692036b1b9ad5.dcm,/cases/case_40/view_3/00014_d2b7f2d4c206b23c.dcm,/cases/case_40/view_3/00015_18b1a0ae49d45a8c.dcm,/cases/case_40/view_3/00016_b20f889b4c590b26.dcm,/cases/case_40/view_3/00017_4836134e4259e21d.dcm,/cases/case_40/view_3/00018_2b07d508de51f6c3.dcm,/cases/case_40/view_3/00019_ad79cb34938c7a09.dcm,/cases/case_40/view_3/00020_fb8a4a0453659d90.dcm,/cases/case_40/view_3/00021_c520d92de853aff0.dcm,/cases/case_40/view_3/00022_28ba0f9710f1ea38.dcm,/cases/case_40/view_3/00023_451cd48403bb9fa7.dcm,/cases/case_40/view_3/00024_7e3527281d41e9d9.dcm,/cases/case_40/view_3/00025_5808a4876e48a033.dcm,/cases/case_40/view_3/00026_130c7933865d2641.dcm,/cases/case_40/view_3/00027_9b2c7a9a834c8164.dcm,/cases/case_40/view_3/00028_41e55c8a03c1fe99.dcm,/cases/case_40/view_3/00029_ca161167ff3ee30f.dcm,/cases/case_40/view_3/00030_d72d794b26c826b2.dcm";
+                let filesArray3 = files3.split(",");
+                app3.loadURLs(filesArray3)
+
+                document.getElementById("view3Scroll").onclick = app3.onChangeTool;
+                document.getElementById("view3Window").onclick = app3.onChangeTool;
+                document.getElementById("view3Zoom").onclick = app3.onChangeTool;                
+            </script>
+        </div>
+
+        
+        <div class="col-lg-6 col-md-6 col-sm-12 mr">
+            <div class="d-flex flex-row" style="margin-bottom: 5px;">
+                <div class="btn-group" role="group">
+                    <button title="Scroll" type="button" class="btn scroll-btn chosen" value="Scroll" id="view4Scroll">
+                        <i class="fas fa-scroll"></i></button>
+                    <button title="Window" type="button" class="btn level-btn" value="WindowLevel" id="view4Window">
+                        <i class="fas fa-adjust"></i></button>
+                    <button title="Pan/Zoom" type="button" class="btn zoom-btn" value="ZoomAndPan" id="view4Zoom">
+                        <i class="fas fa-search-plus"></i></button>
+                </div>
+                <button title="Reset" type="button" style="margin-left: 3px;" class="btn reset-btn">
+                    <i class="fas fa-undo-alt"></i></button>
+            </div>
+
+            <div id="dwv4">
+                <div id="layerGroup3" class="layerContainer">
+                    <canvas class="imageLayer"></canvas>
+                </div>
+                <div class="imagelabel"><span>DCE</span></div>
+            </div>
+            <script>
+                var app4 = new dwv.App();
+                app4.init({
+                    "containerDivId": "dwv4",
+                    "fitToWindow": true,
+                    "tools": ["Scroll", "ZoomAndPan", "WindowLevel"]
+                });
+
+                var files4 = "/cases/case_40/view_4/00001_3708b574f560e45e.dcm,/cases/case_40/view_4/00002_f24a4fa9b388081f.dcm,/cases/case_40/view_4/00003_d70ed1d801cfd1c1.dcm,/cases/case_40/view_4/00004_9347f691b8086822.dcm,/cases/case_40/view_4/00005_5cead7fe530e8b2c.dcm,/cases/case_40/view_4/00006_95ed219171ef114d.dcm,/cases/case_40/view_4/00007_326e3818ae3e43a9.dcm,/cases/case_40/view_4/00008_8b44f68660a22385.dcm,/cases/case_40/view_4/00009_e7424437a1622fb2.dcm,/cases/case_40/view_4/00010_1a909500bc4d21b0.dcm,/cases/case_40/view_4/00011_3b7dfab3a2269a7a.dcm,/cases/case_40/view_4/00012_ba5ceeb30b8b3537.dcm,/cases/case_40/view_4/00013_d5cfe6f52ef09140.dcm,/cases/case_40/view_4/00014_1e85136b502fd2e0.dcm,/cases/case_40/view_4/00015_cb522f883b4e85bd.dcm,/cases/case_40/view_4/00016_4cae64a85c6ee517.dcm,/cases/case_40/view_4/00017_118834528ad14ec2.dcm,/cases/case_40/view_4/00018_c5a35d122bd20ccf.dcm,/cases/case_40/view_4/00019_2eb50df428e26fe1.dcm,/cases/case_40/view_4/00020_e2c37d77edd3f4c4.dcm,/cases/case_40/view_4/00021_051995abd1ca7b97.dcm,/cases/case_40/view_4/00022_09954ce6aa5a6576.dcm,/cases/case_40/view_4/00023_e5c52242cce2f188.dcm,/cases/case_40/view_4/00024_30fc9174513312b2.dcm";
+                let filesArray4 = files4.split(",");
+                app4.loadURLs(filesArray4)
+
+                document.getElementById("view4Scroll").onclick = app4.onChangeTool;
+                document.getElementById("view4Window").onclick = app4.onChangeTool;
+                document.getElementById("view4Zoom").onclick = app4.onChangeTool;                
+            </script>
+        </div>
+
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-12">
+<h5 id="75-year-old-man-on-active-surveillance-for-prostate-cancer-psa-of-59-ngml">75 year-old man on active surveillance for prostate cancer. PSA of 5.9 ng/mL.</h5>
+<p><small> <p>Select the scroll, zoom/pan, and window/level buttons to perform each of these functions. Scroll and zoom using the middle mouse button or mouse wheel. Pan and window/level using the left mouse button.</p>
+</small></p>
+<div style="margin-top: 3em; margin-bottom: 1em;">
+    <a href="" class="btn btn-blue" type="button" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">&nbsp;See the solution</a>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border: none;">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="padding: 1rem; padding-bottom: 2rem;">
+        <div class="row">
+          <div class="col-12">
+            <p style="text-align: justify;"> <span class="bold">Finding:</span> The left posterior TZ demonstrates a non-rounded non-encapsulated focal region of homogeneous decreased T2 signal (darker than the remainder of the TZ) also showing focal markedly decreased ADC and increased high b-value signal. The lesion measured over 15mm.</p>
+          </div>
+          <div class="col-12">
+            <p> <span class="bold">T2WI:</span> 5.<span class="bold"> DWI:</span> 5. 
+              <span class="bold">PI-RADS:</span> 5. <br>
+              <span class="bold">MRI/TRUS fusion biopsy:</span>  Gleason score 3&#43;4 tumor.   
+            </p>
+            <div style="text-align: center; margin-bottom: 20px; margin-top: 40px;">
+              <img class="img-fluid" src="../../solutions/40.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <div class="col-4 mt-2">
+    
+     
+    
+    <nav>
+      <ul class="pagination">
+        
+        <li class="page-item">
+          <a href="https://learnprostatemri.org/cases/post-39/" class="btn btn-outline-dark" style="padding: 5px 27px; font-size: 15px">
+            
+            <span aria-hidden="true">Previous</span>
+          </a>
+        </li>
+        
+        
+        <li class="page-item">
+          <a href="https://learnprostatemri.org/cases/post-41/" class="btn btn-outline-dark" style="padding: 5px 27px; font-size: 15px">
+            <span aria-hidden="true">Next</span>
+          </a>
+        </li>
+         
+        
+      </ul>
+    </nav>
+     
+    
+</div>
+</div>
+<footer id="footer" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-4 mb-3">
+                <small>
+                    Disclaimer: Except for where otherwise indicated, the content of this website is the sole property
+                    of Dr. Andrew Rosenkrantz.Permission from the site's author is required prior to any use or reproduction of
+                    any of the content.
+                </small>
+                <small style="margin-top: 8px;">© 2017-2024 Dr. Andrew Rosenkrantz</small>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-4 mb-3" style="text-align: center;">
+                <a href="https://www.rsna.org/" target="_blank"><img src="../../logo.png" style="height: 43px;" align="center"></a>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-4 mb-3" style="text-align: center;">
+                <a href="https://med.nyu.edu/departments-institutes/radiology/research" target="_blank"><img src="../../CBI_Logo_Final.png" style="height: 43px;"></a>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <a style="color: #ddd; font-size: 9px; text-align: right; display: block; text-decoration: none;"
+                    href="http://jamiekleiman.com/" target="_blank">Web
+                    design by
+                    Jamie Kleiman</a>
+            </div>
+        </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</div>
+</body>
+
+</html>
